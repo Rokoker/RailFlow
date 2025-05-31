@@ -1,4 +1,5 @@
 import { useState } from 'react'
+<div className="text-4xl font-bold text-red-500">Проверка Tailwind</div>
 
 export default function Register() {
   const [email, setEmail] = useState('')
