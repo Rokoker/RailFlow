@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import java.util.Map;
+
 
 import java.util.Optional;
 
@@ -19,11 +21,15 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-            return ResponseEntity.badRequest().body("User already exists");
+            return ResponseEntity
+                    .badRequest()
+                    .body(Map.of("error", "User already exists"));
+
         }
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
-        return ResponseEntity.ok("Registered");
+        return ResponseEntity.ok(Map.of("message", "Registered"));
+
     }
 
     @PostMapping("/login")
@@ -35,6 +41,7 @@ public class AuthController {
             return ResponseEntity.status(401).body("Invalid credentials");
         }
 
-        return ResponseEntity.ok("Logged in");
+        return ResponseEntity.ok(Map.of("message", "Logged in"));
+
     }
 }
