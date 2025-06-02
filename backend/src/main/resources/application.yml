@@ -18,6 +18,12 @@ spring:
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
-  server:
-    addres: 0.0.0.0
-    port: 8080
+logging:
+  level:
+    root: DEBUG                         # Все логи на уровне DEBUG
+    org.springframework.web: DEBUG     # Логгировать все web-запросы
+    yaroslav.khalin: DEBUG             # Твой пакет — логи твоих контроллеров, репозиториев и т.д.
+
+server:
+  port: 8080
+  adress: 0.0.0.0

@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
       proxy: {
         '/api': {
-          target: 'http://localhost:8080', // ← порт твоего backend-контейнера
+          target: 'http://localhost:80', // ← порт твоего backend-контейнера
           changeOrigin: true,
           secure: false,
         },
@@ -15,3 +15,4 @@ export default defineConfig({
     outDir: 'dist'
   }}}
 )
+

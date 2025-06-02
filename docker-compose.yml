@@ -1,4 +1,5 @@
 services:
+
   backend:
     build:
       context: ./backend
@@ -11,13 +12,13 @@ services:
 
   nginx:
     build:
-      context: ./nginx
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "80:80"
-    volumes:
-      - ./frontend/dist:/usr/share/nginx/html
     depends_on:
       - backend
+
 
   postgres:
     image: postgres:15
@@ -28,7 +29,6 @@ services:
       POSTGRES_PASSWORD: secret
     volumes:
       - pgdata:/var/lib/postgresql/data
-
 
 volumes:
   pgdata:
