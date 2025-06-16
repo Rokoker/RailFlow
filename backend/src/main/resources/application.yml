@@ -26,4 +26,4 @@ logging:
 
 server:
   port: 8080
-  adress: 0.0.0.0
+  address: 0.0.0.0
